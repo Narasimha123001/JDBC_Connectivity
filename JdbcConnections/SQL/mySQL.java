@@ -1,8 +1,6 @@
-package com.JdbcConnections;
+package com.JdbcConnections.SQL;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class mySQL {
     private static String DB_URL = "jdbc:mysql://localhost:3306/EMPLOYEE";
