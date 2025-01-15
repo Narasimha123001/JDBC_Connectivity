@@ -18,6 +18,7 @@ public class mySQL {
         }
     }
 
+    //Create
     public void addEmployee(int id, String name, double salary){
         String Query = "INSERT INTO EMPLOYEE(id,name,salary)VALUES(?,?,?)";
         try(PreparedStatement preparedStatement = connection.prepareStatement(Query)){
@@ -30,6 +31,8 @@ public class mySQL {
             e.printStackTrace();
         }
     }
+
+    //Read
 
     public List<String> getAllEmployee() {
         List<String> list = new ArrayList<>();
@@ -45,9 +48,23 @@ public class mySQL {
         }catch (SQLException e){
             e.printStackTrace();
         }
-
-
-
         return list;
+    }
+
+    // update
+
+    public void updateEmployeeDetails(int id, String newName){
+        String Query = "UPDATE EMPLOYEE SET name= ? WHERE id = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(Query)){
+            preparedStatement.setString(1,newName);
+            preparedStatement.setInt(2,id);
+            preparedStatement.executeUpdate();
+            System.out.println("Employee name update successfully");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
     }
 }
