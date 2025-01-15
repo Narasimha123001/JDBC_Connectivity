@@ -1,6 +1,8 @@
 package com.JdbcConnections.SQL;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class mySQL {
     private static String DB_URL = "jdbc:mysql://localhost:3306/EMPLOYEE";
@@ -27,5 +29,25 @@ public class mySQL {
     }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public List<String> getAllEmployee() {
+        List<String> list = new ArrayList<>();
+        String Query = "SELECT * FROM EMPLOYEE";
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(Query)){
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String  name = resultSet.getString("name");
+                double salary = resultSet.getDouble("salary");
+                list.add("ID: "+id+" Name: "+name+" Salary: "+salary);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+
+        return list;
     }
 }
