@@ -64,7 +64,16 @@ public class mySQL {
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
 
-
+    public void deleteEmployee(int id){
+        String Query = "DELETE FROM EMPLOYEE WHERE id = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(Query)){
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            System.out.println("Employee delete successfully");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
