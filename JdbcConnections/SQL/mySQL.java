@@ -65,6 +65,7 @@ public class mySQL {
             e.printStackTrace();
         }
     }
+    //delete employee
 
     public void deleteEmployee(int id){
         String Query = "DELETE FROM EMPLOYEE WHERE id = ?";
@@ -74,6 +75,12 @@ public class mySQL {
             System.out.println("Employee delete successfully");
         }catch (SQLException e){
             e.printStackTrace();
+        }
+    }
+    //close connection
+    public void closeConnection() throws SQLException {
+        if(connection != null  && !connection.isClosed()){
+            connection.close();
         }
     }
 }
