@@ -15,4 +15,17 @@ public class mySQL {
             e.printStackTrace();
         }
     }
+
+    public void addEmployee(int id, String name, double salary){
+        String Query = "INSERT INTO EMPLOYEE(id,name,salary)VALUES(?,?,?)";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(Query)){
+            preparedStatement.setInt(1,id);
+            preparedStatement.setString(2,name);
+            preparedStatement.setDouble(3,salary);
+            preparedStatement.executeUpdate();
+            System.out.println("Employee add successfully");
+    }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
